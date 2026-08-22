@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071b2f" />
+  <meta name="description" content="HAGA — smart water access and early-warning for Somaliland." />
+  <title>HAGA — Smart Water Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3u5v2gM9qz8Z4bR2v3fYv7k2YhZ1M=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="HAGA home">
+      <img src="logo.svg" alt="HAGA logo" class="brand-logo" />
+      <span>HAGA</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#map-section">Find Water</a>
+      <a href="#how">How it works</a>
+      <a href="#dashboard">Insights</a>
+    </nav>
+    <button class="nav-report" data-open-report>Report a problem</button>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="pulse-dot"></span> Water intelligence for Somaliland</div>
+        <h1>Find water.<br><span>Before you need to.</span></h1>
+        <p>HAGA connects people to available water, makes prices visible, and turns community reports into early warnings for water shortages.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#map-section">Explore nearby water <span>↗</span></a>
+          <button class="btn btn-ghost" data-open-report>Report a shortage</button>
+        </div>
+        <div class="hero-proof">
+          <div><strong>24/7</strong><span>community updates</span></div>
+          <div><strong>Live</strong><span>water availability</span></div>
+          <div><strong>Early</strong><span>shortage warnings</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal delay-1">
+        <div class="hero-orbit orbit-a"></div>
+        <div class="hero-orbit orbit-b"></div>
+        <div class="hero-water-card">
+          <div class="mini-map-grid"></div>
+          <div class="map-road road-one"></div><div class="map-road road-two"></div><div class="map-road road-three"></div>
+          <div class="map-pin pin-one"><span>💧</span></div>
+          <div class="map-pin pin-two"><span>🚛</span></div>
+          <div class="map-pin pin-three active"><span>●</span></div>
+          <div class="hero-card-label"><span class="status-dot"></span> 12 water points nearby</div>
+          <div class="hero-location">Hargeisa <span>⌄</span></div>
+          <div class="floating-info">
+            <span class="info-icon">💧</span>
+            <div><strong>Water Point #27</strong><small>Available · 0.8 km</small></div>
+            <b>$1.20</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact-strip">
+      <div class="section-shell impact-grid">
+        <div><span class="impact-number">03</span><span>districts in the demo</span></div>
+        <div><span class="impact-number">47</span><span>community reports</span></div>
+        <div><span class="impact-number">81%</span><span>highest risk detected</span></div>
+        <div><span class="impact-number">3–5d</span><span>sample warning window</span></div>
+      </div>
+    </section>
+
+    <section id="map-section" class="section-shell app-section">
+      <div class="section-heading reveal">
+        <div><div class="eyebrow">LIVE WATER MAP</div><h2>Water, at a glance.</h2></div>
+        <p>See reported availability, compare prices, and choose the closest reliable source.</p>
+      </div>
+      <div class="app-grid">
+        <div class="map-panel reveal">
+          <div id="map" aria-label="Interactive HAGA water map"></div>
+          <div class="map-overlay-top">
+            <button class="map-filter active" data-filter="all">All</button>
+            <button class="map-filter" data-filter="available">Available</button>
+            <button class="map-filter" data-filter="low">Low supply</button>
+          </div>
+          <div class="map-legend"><span><i class="legend-dot green"></i> Available</span><span><i class="legend-dot amber"></i> Low supply</span><span><i class="legend-dot red"></i> Empty</span></div>
+        </div>
+        <aside class="source-list reveal delay-1">
+          <div class="list-head"><div><span class="tiny-label">NEARBY</span><h3>Water sources</h3></div><span class="source-count" id="sourceCount">5</span></div>
+          <div id="sourceCards"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section-shell intelligence-section">
+      <div class="section-heading reveal">
+        <div><div class="eyebrow">HAGA INTELLIGENCE</div><h2>See the shortage coming.</h2></div>
+        <p>HAGA combines availability, reports, demand signals and environmental trends into a simple risk picture.</p>
+      </div>
+      <div class="dashboard-grid">
+        <article class="risk-card reveal">
+          <div class="card-top"><span>District 26 June</span><span class="risk-badge">HIGH RISK</span></div>
+          <div class="risk-score"><span>81</span><small>/100</small></div>
+          <p>Predicted water shortage within <strong>3–5 days</strong>.</p>
+          <div class="risk-bars">
+            <div><span>Demand</span><b><i style="width:91%"></i></b><strong>91%</strong></div>
+            <div><span>Supply</span><b><i style="width:43%"></i></b><strong>43%</strong></div>
+            <div><span>Reports</span><b><i style="width:84%"></i></b><strong>84%</strong></div>
+          </div>
+          <button class="text-action" data-open-report>Send a report <span>→</span></button>
+        </article>
+        <article class="trend-card reveal delay-1">
+          <div class="card-top"><span>Water availability</span><span class="trend-up">Last 7 days</span></div>
+          <div class="chart" aria-label="Water availability trend chart">
+            <div class="chart-grid"></div>
+            <svg viewBox="0 0 600 190" preserveAspectRatio="none" role="img" aria-hidden="true"><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#28c7a1" stop-opacity=".32"/><stop offset="1" stop-color="#28c7a1" stop-opacity="0"/></linearGradient></defs><path class="area" d="M0 55 C65 50 85 92 145 72 S220 48 270 81 S340 108 390 89 S455 66 510 108 S565 125 600 140 L600 190 L0 190 Z"/><path class="line" d="M0 55 C65 50 85 92 145 72 S220 48 270 81 S340 108 390 89 S455 66 510 108 S565 125 600 140"/></svg>
+            <div class="chart-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Today</span></div>
+          </div>
+          <div class="trend-summary"><strong>−18%</strong><span>reported availability this week</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="how" class="section-shell how-section">
+      <div class="section-heading centered reveal"><div><div class="eyebrow">HOW HAGA WORKS</div><h2>Simple for people.<br>Powerful for decision-makers.</h2></div></div>
+      <div class="steps-grid">
+        <article class="step-card reveal"><span>01</span><div class="step-icon">⌖</div><h3>Find</h3><p>Open the map and see nearby water points, tankers, prices and availability.</p></article>
+        <article class="step-card reveal delay-1"><span>02</span><div class="step-icon">⚡</div><h3>Report</h3><p>Tell the community when a source is empty, broken, overpriced or back online.</p></article>
+        <article class="step-card reveal delay-2"><span>03</span><div class="step-icon">◌</div><h3>Predict</h3><p>HAGA turns signals into risk scores so action can happen before a shortage grows.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell cta-section reveal">
+      <div><div class="eyebrow">A BETTER WATER NETWORK</div><h2>One report can help<br>an entire neighborhood.</h2></div>
+      <button class="btn btn-light" data-open-report>Report a water problem <span>↗</span></button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="section-shell footer-inner">
+      <div class="footer-brand"><img src="logo.svg" alt="HAGA logo" /><div><strong>HAGA</strong><span>Smart Water Network</span></div></div>
+      <div class="footer-note">Built for Somaliland · Designed for real-world impact</div>
+      <div class="made-by">Made by <strong>Raazim Tech</strong></div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="reportModal" aria-hidden="true">
+    <div class="report-modal" role="dialog" aria-modal="true" aria-labelledby="reportTitle">
+      <button class="modal-close" data-close-report aria-label="Close">×</button>
+      <div class="eyebrow">COMMUNITY REPORT</div><h2 id="reportTitle">What happened?</h2><p>Help keep HAGA's water map accurate.</p>
+      <form id="reportForm">
+        <label>Problem<select id="problem"><option>Water point is empty</option><option>Water point is broken</option><option>Price is too high</option><option>Tanker unavailable</option><option>Other</option></select></label>
+        <label>Area<input id="area" value="Hargeisa" required /></label>
+        <label>Details<textarea id="details" placeholder="Add a short note..." rows="3"></textarea></label>
+        <button class="btn btn-primary full" type="submit">Submit report <span>→</span></button>
+      </form>
+      <div class="success-state" id="successState"><div class="success-icon">✓</div><h3>Report received.</h3><p>Thanks. Your report is now part of HAGA's community signal.</p><button class="btn btn-ghost" data-close-report>Done</button></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
