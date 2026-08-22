@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raazimtech.github.io/Haga/sitemap.xml
